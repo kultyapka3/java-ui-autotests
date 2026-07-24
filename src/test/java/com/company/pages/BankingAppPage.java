@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 /** Page Object навигационной страницы */
 public class BankingAppPage extends BasePage {
 
-    private static final By SAMPLE_FORM_LINK = By.cssSelector("a[href*='registrationform.html']");
+    private static final By SAMPLE_FORM_LINK = By.linkText("Sample Form");
     private static final By BANK_MANAGER_BTN =
             By.xpath("//button[contains(text(), 'Bank Manager Login')]");
 
@@ -15,6 +15,7 @@ public class BankingAppPage extends BasePage {
         super(driver);
     }
 
+    /** Переход на страницу Sample Form */
     @Step("Переход на страницу Sample Form")
     public SampleFormPage goToSampleForm() {
         clickElement(SAMPLE_FORM_LINK);
@@ -22,6 +23,7 @@ public class BankingAppPage extends BasePage {
         return new SampleFormPage(driver);
     }
 
+    /** Переход на страницу Bank Manager */
     @Step("Переход на страницу Bank Manager")
     public BankManagerPage goToBankManager() {
         clickElement(BANK_MANAGER_BTN);

@@ -71,6 +71,7 @@ public class HomePage extends BasePage {
         return isNavigationVisible();
     }
 
+    /** Переход на страницу Lifetime Membership */
     @Step("Переход на страницу Lifetime Membership")
     public LifetimeMembershipPage goToLifetimeMembership() {
         findClickableElement(LIFETIME_MEMBERSHIP_LINK).click();

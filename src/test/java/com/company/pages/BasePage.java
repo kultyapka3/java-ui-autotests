@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Alert;
 
 import com.company.config.Config;
 
@@ -77,5 +78,12 @@ public class BasePage {
     @Step("Клик по элементу с локатором = {locator}")
     public void clickElement(By locator) {
         findClickableElement(locator).click();
+    }
+
+    /** Принятие алерта */
+    @Step("Принятие алерта")
+    public void acceptAlert() {
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.accept();
     }
 }

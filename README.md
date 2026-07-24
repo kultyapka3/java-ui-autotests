@@ -202,14 +202,14 @@ mvn clean compile
     2. Перейти по ссылке: `https://www.way2automation.com/angularjs-protractor/banking/#/login`
     3. Нажать на кнопку `Bank Manager Login`
     4. Перейти во вкладку `Add Customer`
-    5. В поле `First Name` ввести `Albus`
-    6. В поле `Last Name` ввести `Dumbledore`
+    5. В поле `First Name` ввести `Hagrid`
+    6. В поле `Last Name` ввести `Rubeus`
     7. В поле `Post Code` ввести `E12345`
     8. Нажать на кнопку `Add Customer`
 
 - **Шаги**:
     1. Перейти во вкладку `Customers`
-    2. В поле поиска ввести `Albus`
+    2. В поле поиска ввести `Hagrid`
     3. Нажать на кнопку `Delete`
     4. Очистить поле поиска
 
@@ -220,6 +220,6 @@ mvn clean compile
     1. Закрыть браузер
 
 - **Тестовые данные**:
-    1. `First Name` — `Albus`
-    2. `Last Name` — `Dumbledore`
+    1. `First Name` — `Hagrid`
+    2. `Last Name` — `Rubeus`
     3. `Post Code` — `E12345`
