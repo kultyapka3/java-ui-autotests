@@ -25,44 +25,37 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(Config.getDefaultTimeout()));
     }
 
-    /** Открытие URL */
     @Step("Открытие URL = {url}")
     public void open(String url) {
         driver.get(url);
     }
 
-    /** Поиск видимого элемента */
     @Step("Поиск видимого элемента по локатору = {locator}")
     public WebElement findVisibleElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    /** Поиск видимых элементов */
     @Step("Поиск видимых элементов по локатору = {locator}")
     public List<WebElement> findVisibleElements(By locator) {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
-    /** Прокручивание страницы до середины */
     @Step("Прокручивание страницы до середины")
     public void scrollPageToMiddle() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, document.documentElement.scrollHeight / 2);");
     }
 
-    /** Поиск кликабельного элемента */
     @Step("Поиск кликабельного элемента c локатором = {locator}")
     public WebElement findClickableElement(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    /** Получение текущего URL */
     @Step("Получение текущего URL")
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
-    /** Ввод текста в элемент */
     @Step("Ввод текста ({text}) в элемент с локатором = {locator}")
     public void sendKeysToElement(By locator, String text) {
         WebElement element = findVisibleElement(locator);
@@ -74,13 +67,11 @@ public class BasePage {
         element.sendKeys(text);
     }
 
-    /** Клик по элементу */
     @Step("Клик по элементу с локатором = {locator}")
     public void clickElement(By locator) {
         findClickableElement(locator).click();
     }
 
-    /** Принятие алерта */
     @Step("Принятие алерта")
     public void acceptAlert() {
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());

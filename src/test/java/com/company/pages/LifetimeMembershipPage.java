@@ -13,13 +13,11 @@ public class LifetimeMembershipPage extends BasePage {
         super(driver);
     }
 
-    /** Получение URL страницы */
     @Step("Получение URL страницы")
     public String getLifetimeMembershipUrl() {
         return getCurrentUrl();
     }
 
-    /** Получение заголовка страницы */
     @Step("Получение заголовка страницы")
     public String getLifetimeMembershipTitle() {
         return findVisibleElement(LIFETIME_MEMBERSHIP_TITLE).getText().strip();

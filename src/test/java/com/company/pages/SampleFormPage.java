@@ -25,7 +25,6 @@ public class SampleFormPage extends BasePage {
         super(driver);
     }
 
-    /** Ввод имени */
     @Step("Ввод имени = {firstName}")
     public SampleFormPage enterFirstName(String firstName) {
         sendKeysToElement(FIRST_NAME, firstName);
@@ -33,7 +32,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Ввод фамилии */
     @Step("Ввод фамилии = {lastName}")
     public SampleFormPage enterLastName(String lastName) {
         sendKeysToElement(LAST_NAME, lastName);
@@ -41,7 +39,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Ввод почты */
     @Step("Ввод почты = {email}")
     public SampleFormPage enterEmail(String email) {
         sendKeysToElement(EMAIL, email);
@@ -49,7 +46,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Ввод пароля */
     @Step("Ввод пароля = {password}")
     public SampleFormPage enterPassword(String password) {
         sendKeysToElement(PASSWORD, password);
@@ -57,7 +53,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Выбор хобби */
     @Step("Выбор хобби = {hobby}")
     public SampleFormPage selectHobby(String hobby) {
         By hobbyLocator = By.cssSelector("input[name='hobbies'][value='" + hobby + "']");
@@ -66,7 +61,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Получение списка хобби */
     @Step("Получение списка хобби")
     public List<String> getHobbiesList() {
         List<WebElement> labels = findVisibleElements(HOBBIES_LABELS);
@@ -77,7 +71,6 @@ public class SampleFormPage extends BasePage {
                 .collect(Collectors.toList());
     }
 
-    /** Выбор гендера */
     @Step("Выбор гендера = {gender}")
     public SampleFormPage selectGender(String gender) {
         WebElement dropdown = findVisibleElement(GENDER_DROPDOWN);
@@ -86,7 +79,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Ввод информации о себе */
     @Step("Ввод информации о себе = {aboutYourself}")
     public SampleFormPage enterAboutYourself(String aboutYourself) {
         sendKeysToElement(ABOUT_TEXTAREA, aboutYourself);
@@ -94,7 +86,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Нажатие на кнопку 'Register' */
     @Step("Нажатие на кнопку 'Register'")
     public SampleFormPage register() {
         clickElement(REGISTER_BUTTON);
@@ -102,7 +93,6 @@ public class SampleFormPage extends BasePage {
         return this;
     }
 
-    /** Проверка отображения сообщения об успешной регистрации */
     @Step("Проверка отображения сообщения об успешной регистрации")
     public boolean isSuccessMessageDisplayed() {
         return findVisibleElement(SUCCESS_MESSAGE).isDisplayed();

@@ -15,7 +15,6 @@ public class BankingAppPage extends BasePage {
         super(driver);
     }
 
-    /** Переход на страницу Sample Form */
     @Step("Переход на страницу Sample Form")
     public SampleFormPage goToSampleForm() {
         clickElement(SAMPLE_FORM_LINK);
@@ -23,7 +22,6 @@ public class BankingAppPage extends BasePage {
         return new SampleFormPage(driver);
     }
 
-    /** Переход на страницу Bank Manager */
     @Step("Переход на страницу Bank Manager")
     public BankManagerPage goToBankManager() {
         clickElement(BANK_MANAGER_BTN);

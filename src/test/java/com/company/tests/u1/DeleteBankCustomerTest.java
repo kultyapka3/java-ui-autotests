@@ -30,16 +30,18 @@ public class DeleteBankCustomerTest extends BaseTest {
                             .enterFirstName(BankManagerLoginData.FIRST_NAME)
                             .enterLastName(BankManagerLoginData.LAST_NAME)
                             .enterPostCode(BankManagerLoginData.POST_CODE)
-                            .addCustomer()
+                            .clickAddCustomer()
                             .acceptCustomerAlert();
                 });
 
-        bankManagerPage.goToCustomersTab().searchCustomer(BankManagerLoginData.FIRST_NAME);
+        bankManagerPage.goToCustomersTab().fillSearchCustomer(BankManagerLoginData.FIRST_NAME);
 
         Allure.step(
                 "Удаление покупателя и проверка его отсутствия",
                 () -> {
-                    bankManagerPage.deleteCustomer(BankManagerLoginData.FIRST_NAME).clearSearch();
+                    bankManagerPage
+                            .deleteCustomer(BankManagerLoginData.FIRST_NAME)
+                            .clearSearchCustomer();
 
                     Assert.assertFalse(
                             bankManagerPage.isCustomerPresent(BankManagerLoginData.FIRST_NAME),

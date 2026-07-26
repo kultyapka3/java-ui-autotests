@@ -22,7 +22,6 @@ public class BankManagerPage extends BasePage {
         super(driver);
     }
 
-    /** Переход на вкладку 'Add Customer' */
     @Step("Переход на вкладку 'Add Customer'")
     public BankManagerPage goToAddCustomerTab() {
         clickElement(ADD_CUSTOMER_TAB_BTN);
@@ -30,7 +29,6 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Ввод имени */
     @Step("Ввод имени = {firstName}")
     public BankManagerPage enterFirstName(String firstName) {
         sendKeysToElement(FIRST_NAME_INPUT, firstName);
@@ -38,7 +36,6 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Ввод фамилии */
     @Step("Ввод фамилии = {lastName}")
     public BankManagerPage enterLastName(String lastName) {
         sendKeysToElement(LAST_NAME_INPUT, lastName);
@@ -46,7 +43,6 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Ввод почтового индекса */
     @Step("Ввод почтового индекса = {postCode}")
     public BankManagerPage enterPostCode(String postCode) {
         sendKeysToElement(POST_CODE_INPUT, postCode);
@@ -54,15 +50,13 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Нажатие на кнопку 'Add Customer' */
     @Step("Нажатие на кнопку 'Add Customer'")
-    public BankManagerPage addCustomer() {
+    public BankManagerPage clickAddCustomer() {
         clickElement(ADD_CUSTOMER_SUBMIT_BTN);
 
         return this;
     }
 
-    /** Закрытие всплывающего алерта о подтверждении добавления клиента */
     @Step("Закрытие всплывающего алерта о подтверждении добавления клиента")
     public BankManagerPage acceptCustomerAlert() {
         acceptAlert();
@@ -70,7 +64,6 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Переход на вкладку 'Customers' */
     @Step("Переход на вкладку 'Customers'")
     public BankManagerPage goToCustomersTab() {
         clickElement(CUSTOMERS_TAB_BTN);
@@ -78,15 +71,13 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Поиск по имени */
     @Step("Поиск по имени = {firstName}")
-    public BankManagerPage searchCustomer(String firstName) {
+    public BankManagerPage fillSearchCustomer(String firstName) {
         sendKeysToElement(SEARCH_INPUT, firstName);
 
         return this;
     }
 
-    /** Удаление по имени */
     @Step("Удаление по имени = {firstName}")
     public BankManagerPage deleteCustomer(String firstName) {
         By deleteBtn =
@@ -99,16 +90,14 @@ public class BankManagerPage extends BasePage {
         return this;
     }
 
-    /** Очистка поля поиска */
     @Step("Очистка поля поиска")
-    public BankManagerPage clearSearch() {
+    public BankManagerPage clearSearchCustomer() {
         WebElement searchField = findVisibleElement(SEARCH_INPUT);
         searchField.clear();
 
         return this;
     }
 
-    /** Проверка наличия покупателя в таблице по имени */
     @Step("Проверка наличия покупателя в таблице по имени = {firstName}")
     public boolean isCustomerPresent(String firstName) {
         By customerRow = By.xpath("//td[contains(text(), '" + firstName + "')]");
