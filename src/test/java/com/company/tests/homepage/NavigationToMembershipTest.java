@@ -17,7 +17,7 @@ import com.company.pages.LifetimeMembershipPage;
 public class NavigationToMembershipTest extends BaseTest {
 
     @Test(
-            description = "TC04. Переход по меню навигации на страницу Lifetime Membership",
+            description = "TК04. Переход по меню навигации на страницу Lifetime Membership",
             groups = {"way2automation", "positive"})
     public void testNavigationToMembership() {
         HomePage homePage = createHomePage();

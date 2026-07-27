@@ -14,6 +14,7 @@ public class LoginPage extends BasePage {
     private static final By LOGIN_BUTTON = By.cssSelector("button[ng-click='Auth.login()']");
     private static final By SUCCESS_MESSAGE =
             By.xpath("//p[contains(text(), \"You're logged in!!\")]");
+    private static final By ERROR_MESSAGE = By.cssSelector(".alert.alert-danger");
     private static final By LOGOUT_BUTTON = By.linkText("Logout");
 
     public LoginPage(WebDriver driver) {
@@ -47,7 +48,7 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Нажатие на кнопку 'Login'")
-    public LoginPage login() {
+    public LoginPage clickLogin() {
         clickElement(LOGIN_BUTTON);
 
         return this;
@@ -58,8 +59,13 @@ public class LoginPage extends BasePage {
         return findVisibleElement(SUCCESS_MESSAGE).getText().strip();
     }
 
+    @Step("Получение сообщения об ошибке авторизации")
+    public String getErrorMessage() {
+        return findVisibleElement(ERROR_MESSAGE).getText().strip();
+    }
+
     @Step("Нажатие на кнопку 'Logout'")
-    public LoginPage logout() {
+    public LoginPage clickLogout() {
         clickElement(LOGOUT_BUTTON);
 
         return this;

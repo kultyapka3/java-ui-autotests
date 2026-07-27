@@ -16,7 +16,7 @@ import com.company.pages.LoginPage;
 public class LoginWithValidDataTest extends BaseTest {
 
     @Test(
-            description = "TC06. Авторизация на сайте с валидными данными",
+            description = "TК06. Авторизация на сайте с валидными данными",
             groups = {"way2automation", "positive"})
     public void testLoginWithValidData() {
         LoginPage loginPage = createLoginPage();
@@ -25,7 +25,7 @@ public class LoginWithValidDataTest extends BaseTest {
                 .enterUsernameLogin(LoginData.VALID_USERNAME_LOGIN)
                 .enterPassword(LoginData.VALID_PASSWORD)
                 .enterUsername(LoginData.VALID_USERNAME)
-                .login();
+                .clickLogin();
 
         Allure.step(
                 "Проверка успешной авторизации",
@@ -35,6 +35,6 @@ public class LoginWithValidDataTest extends BaseTest {
                             "Сообщение о успешной авторизации не найдено");
                 });
 
-        loginPage.logout();
+        loginPage.clickLogout();
     }
 }

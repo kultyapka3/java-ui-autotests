@@ -17,7 +17,7 @@ import com.company.pages.HomePage;
 public class FooterDisplayedTest extends BaseTest {
 
     @Test(
-            description = "TC02. Отображение информации и навигации в футере на главной странице",
+            description = "TК02. Отображение информации и навигации в футере на главной странице",
             groups = {"way2automation", "positive"})
     public void testFooterDisplayed() {
         HomePage homePage = createHomePage();
