@@ -223,3 +223,57 @@ mvn clean compile
     1. `First Name` — `Hagrid`
     2. `Last Name` — `Rubeus`
     3. `Post Code` — `E12345`
+
+## U3 Тест-кейсы
+
+### Тест-кейс №09. Параметризованная авторизация
+
+- **Предусловие**:
+    1. Открыть браузер
+    2. Перейти по ссылке: `https://www.way2automation.com/angularjs-protractor/registeration/#/login`
+
+- **Шаги**:
+    1. Ввести в поле `Username` тестовое значение
+    2. Ввести в поле `Password` тестовое значение
+    3. Ввести в поле `Username *` тестовое значение
+    4. Нажать кнопку `Login`
+
+- **Ожидаемый результат**:
+    1. При валидных данных: отображается сообщение об успешной авторизации `You're logged in!!`
+    2. При невалидных данных: отображается сообщение об ошибке `Username or password is incorrect`
+    3. При пустых полях: кнопка `Login` неактивна
+
+- **Постусловие**:
+    1. В случае успешной авторизации нажать кнопку `Logout`
+    2. Закрыть браузер
+
+- **Тестовые данные**:
+    1. Валидные данные:
+        - `Username` — `angular`
+        - `Password` — `password`
+        - `Username *` — `Hero`
+
+    2. Невалидные данные (неверный логин):
+        - `Username` — `invalid`
+        - `Password` — `password`
+        - `Username *` — `Hero`
+
+    3. Невалидные данные (неверный пароль):
+        - `Username` — `angular`
+        - `Password` — `invalid`
+        - `Username *` — `Hero`
+
+    4. Пустой логин:
+        - `Username` — ` `
+        - `Password` — `password`
+        - `Username *` — `Hero`
+
+    5. Пустой пароль:
+        - `Username` — `angular`
+        - `Password` — ` `
+        - `Username *` — `Hero`
+
+    6. Пробелы в логине и пароле:
+        - `Username` — `   `
+        - `Password` — `   `
+        - `Username *` — `Hero`

@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.homepage;
 
 import io.qameta.allure.*;
 import org.testng.Assert;

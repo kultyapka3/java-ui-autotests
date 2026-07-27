@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.banking.bank_manager;
 
 import io.qameta.allure.*;
 import org.testng.Assert;

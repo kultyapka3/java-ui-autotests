@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.banking.sample_form;
 
 import java.util.List;
 

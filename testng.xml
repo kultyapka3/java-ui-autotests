@@ -5,15 +5,51 @@
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
-    <test name="U1">
+    <test name="auth">
         <groups>
             <run>
-                <include name="u1"/>
+                <include name="auth"/>
             </run>
         </groups>
 
         <packages>
-            <package name="com.company.tests.u1"/>
+            <package name="com.company.tests.auth"/>
+        </packages>
+    </test>
+
+    <test name="bank_manager">
+        <groups>
+            <run>
+                <include name="bank_manager"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.company.tests.banking.bank_manager"/>
+        </packages>
+    </test>
+
+    <test name="sample_form">
+        <groups>
+            <run>
+                <include name="sample_form"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.company.tests.banking.sample_form"/>
+        </packages>
+    </test>
+
+    <test name="homepage">
+        <groups>
+            <run>
+                <include name="homepage"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.company.tests.homepage"/>
         </packages>
     </test>
 

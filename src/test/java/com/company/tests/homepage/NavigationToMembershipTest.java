@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.homepage;
 
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -30,14 +30,16 @@ public class NavigationToMembershipTest extends BaseTest {
                     Assert.assertEquals(
                             lmPage.getLifetimeMembershipUrl(),
                             Config.getLifetimeMembershipUrl(),
-                            "Полученный URL ("
-                                    + lmPage.getLifetimeMembershipUrl()
-                                    + ") не совпадает с ("
-                                    + Config.getLifetimeMembershipUrl()
-                                    + ")");
+                            "Полученный URL не совпадает с ожидаемым");
+
+                    String actualTitle = lmPage.getLifetimeMembershipTitle();
+                    String expectedTitle = "Lifetime Membership";
+
                     Assert.assertTrue(
-                            lmPage.getLifetimeMembershipTitle().contains("Lifetime Membership"),
-                            "Заголовок страницы не соответствует ожидаемому");
+                            actualTitle.contains(expectedTitle),
+                            String.format(
+                                    "Ожидалось, что заголовок содержит (%s), но фактический заголовок: (%s)",
+                                    expectedTitle, actualTitle));
                 });
     }
 }
