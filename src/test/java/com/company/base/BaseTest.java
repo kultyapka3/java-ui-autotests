@@ -1,6 +1,6 @@
 package com.company.base;
 
-import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -10,7 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 
 import com.company.config.Config;
 import com.company.pages.BankingAppPage;
@@ -53,22 +52,24 @@ public class BaseTest {
         return page;
     }
 
+    /** Добавление скриншота в Allure отчет */
+    @Attachment(value = "Screenshot_{testName}", type = "image/png")
+    public byte[] takeScreenshot(String testName) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
     @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        if (driver != null) {
-            ITestResult result = Reporter.getCurrentTestResult();
-
-            if (result != null && result.getStatus() == ITestResult.FAILURE) {
-                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-
-                Allure.getLifecycle()
-                        .addAttachment(
-                                "Screenshot_" + result.getMethod().getMethodName(),
-                                "image/png",
-                                "png",
-                                screenshot);
+    public void tearDown(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            try {
+                takeScreenshot(result.getMethod().getMethodName());
+            } catch (Exception e) {
+                System.err.println("Ошибка при создании скриншота: " + e.getMessage());
+                e.printStackTrace();
             }
+        }
 
+        if (driver != null) {
             driver.quit();
         }
     }

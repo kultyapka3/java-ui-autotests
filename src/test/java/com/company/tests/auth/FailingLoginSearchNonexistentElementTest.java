@@ -30,8 +30,11 @@ public class FailingLoginSearchNonexistentElementTest extends BaseTest {
         Allure.step(
                 "Проверка ошибки авторизации",
                 () -> {
-                    // временно для теста
-                    Assert.assertTrue((Boolean) false, "Сообщение об ошибке не найдено");
+                    Assert.assertTrue(
+                            loginPage
+                                    .getErrorMessage()
+                                    .contains("Username or password is incorrect"),
+                            "Сообщение об ошибке не найдено");
                 });
 
         loginPage.clickLogout();
