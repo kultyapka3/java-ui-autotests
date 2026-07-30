@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.homepage;
 
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -15,7 +15,7 @@ import com.company.pages.HomePage;
 public class MainElementsDisplayedTest extends BaseTest {
 
     @Test(
-            description = "TC01. Отображение основных элементов на главной странице",
+            description = "TК01. Отображение основных элементов на главной странице",
             groups = {"way2automation", "positive"})
     public void testMainElementsDisplayed() {
         HomePage homePage = createHomePage();

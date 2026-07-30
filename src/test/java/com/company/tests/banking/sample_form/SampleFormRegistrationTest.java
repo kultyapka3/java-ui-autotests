@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.banking.sample_form;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import com.company.utils.StringUtils;
 @Severity(SeverityLevel.CRITICAL)
 public class SampleFormRegistrationTest extends BaseTest {
     @Test(
-            description = "TC07. Успешная регистрация в 'Sample Form'",
+            description = "TК07. Успешная регистрация в 'Sample Form'",
             groups = {"way2automation", "positive"})
     public void testSampleFormRegistration() {
         BankingAppPage bankingAppPage = createBankingAppPage();

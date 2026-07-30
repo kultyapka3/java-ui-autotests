@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.homepage;
 
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -15,7 +15,7 @@ import com.company.pages.HomePage;
 public class NavigationVisibilityAfterScrollTest extends BaseTest {
 
     @Test(
-            description = "TC03. Фиксация меню навигации при прокрутке страницы",
+            description = "TК03. Фиксация меню навигации при прокрутке страницы",
             groups = {"way2automation", "positive"})
     public void testNavigationVisibilityAfterScroll() {
         HomePage homePage = createHomePage();

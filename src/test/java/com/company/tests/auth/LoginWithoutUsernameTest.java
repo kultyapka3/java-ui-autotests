@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.auth;
 
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -16,7 +16,7 @@ import com.company.data.LoginData;
 public class LoginWithoutUsernameTest extends BaseTest {
 
     @Test(
-            description = "TC05. Попытка авторизации с незаполненным полем 'Username *'",
+            description = "TК05. Попытка авторизации с незаполненным полем 'Username *'",
             groups = {"way2automation", "negative"})
     public void testLoginWithoutUsername() {
         LoginPage loginPage = createLoginPage();

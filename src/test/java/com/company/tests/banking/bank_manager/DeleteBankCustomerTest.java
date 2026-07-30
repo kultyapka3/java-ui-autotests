@@ -1,4 +1,4 @@
-package com.company.tests.u1;
+package com.company.tests.banking.bank_manager;
 
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -16,7 +16,7 @@ import com.company.pages.BankManagerPage;
 @Severity(SeverityLevel.CRITICAL)
 public class DeleteBankCustomerTest extends BaseTest {
     @Test(
-            description = "TC08. Удаление покупателя в 'Bank Manager Login'",
+            description = "TК08. Удаление покупателя в 'Bank Manager Login'",
             groups = {"way2automation", "positive"})
     public void testDeleteBankCustomer() {
         BankingAppPage bankingAppPage = createBankingAppPage();

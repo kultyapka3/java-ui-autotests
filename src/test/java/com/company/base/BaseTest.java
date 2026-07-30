@@ -1,11 +1,15 @@
 package com.company.base;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.testng.AllureTestNg;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import org.testng.ITestResult;
 
 import com.company.config.Config;
 import com.company.pages.BankingAppPage;
@@ -18,7 +22,7 @@ public class BaseTest {
 
     protected WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -48,8 +52,23 @@ public class BaseTest {
         return page;
     }
 
-    @AfterMethod
-    public void tearDown() {
+    /** Добавление скриншота в Allure отчет */
+    @Attachment(value = "Screenshot_{testName}", type = "image/png")
+    public byte[] takeScreenshot(String testName) {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            try {
+                takeScreenshot(result.getMethod().getMethodName());
+            } catch (Exception e) {
+                System.err.println("Ошибка при создании скриншота: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
         if (driver != null) {
             driver.quit();
         }
