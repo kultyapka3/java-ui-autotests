@@ -3,8 +3,10 @@ package com.company.base;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +17,7 @@ import com.company.config.Config;
 import com.company.pages.BankingAppPage;
 import com.company.pages.HomePage;
 import com.company.pages.LoginPage;
+import com.company.pages.SqlExPage;
 
 /** Базовый класс для всех тестов */
 @Listeners(AllureTestNg.class)
@@ -24,7 +27,10 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
     }
 
@@ -48,6 +54,14 @@ public class BaseTest {
     protected BankingAppPage createBankingAppPage() {
         BankingAppPage page = new BankingAppPage(this.driver);
         page.open(Config.getBankingAppUrl());
+
+        return page;
+    }
+
+    /** Создание страницы SQL-Ex */
+    protected SqlExPage createSqlExPage() {
+        SqlExPage page = new SqlExPage(this.driver);
+        page.open(Config.getSQLExUrl());
 
         return page;
     }
