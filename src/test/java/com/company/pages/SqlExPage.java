@@ -51,4 +51,29 @@ public class SqlExPage extends BasePage {
 
         return this;
     }
+
+    @Step("Удаление фокуса с поля логина")
+    public void removeFocusFromLogin() {
+        removeFocusFromElement(LOGIN_FIELD);
+    }
+
+    @Step("Проверка активности поля логина")
+    public boolean isLoginFieldActive() {
+        return isElementActive(LOGIN_FIELD);
+    }
+
+    @Step("Проверка наличия вертикального скролла SQL-Ex")
+    public boolean hasPageVerticalScroll() {
+        return hasVerticalScroll();
+    }
+
+    @Step("Прокрутка страницы SQL-Ex вниз")
+    public void scrollPageToBottom() {
+        scrollToBottom();
+    }
+
+    @Step("Проверка, что страница SQL-Ex прокручена до конца")
+    public boolean isPageAtBottom() {
+        return isAtBottom();
+    }
 }

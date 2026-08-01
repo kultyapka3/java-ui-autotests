@@ -77,4 +77,44 @@ public class BasePage {
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
     }
+
+    @Step("Удаление фокуса с элемента с локатором = {locator}")
+    public void removeFocusFromElement(By locator) {
+        WebElement element = findVisibleElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].blur();", element);
+    }
+
+    @Step("Проверка активности элемента")
+    public boolean isElementActive(By locator) {
+        WebElement element = findVisibleElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        return (boolean)
+                js.executeScript("return document.activeElement === arguments[0];", element);
+    }
+
+    @Step("Проверка наличия вертикального скролла")
+    public boolean hasVerticalScroll() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        return (boolean)
+                js.executeScript(
+                        "return document.documentElement.scrollHeight > document.documentElement.clientHeight;");
+    }
+
+    @Step("Прокрутка страницы в самый низ через JavaScript")
+    public void scrollToBottom() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.documentElement.scrollHeight);");
+    }
+
+    @Step("Проверка достижения конца страницы")
+    public boolean isAtBottom() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        return (boolean)
+                js.executeScript(
+                        "return (document.documentElement.scrollTop + document.documentElement.clientHeight) >= (document.documentElement.scrollHeight - 5);");
+    }
 }
