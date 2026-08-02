@@ -56,12 +56,20 @@ public class LoginPage extends BasePage {
 
     @Step("Получение сообщения о успешной авторизации")
     public String getSuccessMessage() {
-        return findVisibleElement(SUCCESS_MESSAGE).getText().strip();
+        try {
+            return findVisibleElement(SUCCESS_MESSAGE).getText().strip();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     @Step("Получение сообщения об ошибке авторизации")
     public String getErrorMessage() {
-        return findVisibleElement(ERROR_MESSAGE).getText().strip();
+        try {
+            return findVisibleElement(ERROR_MESSAGE).getText().strip();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     @Step("Нажатие на кнопку 'Logout'")
