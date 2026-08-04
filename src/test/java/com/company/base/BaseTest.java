@@ -55,11 +55,11 @@ public class BaseTest {
     private WebDriver createRemoteDriver(String browserName, String gridUrl) throws Exception {
         switch (browserName.toLowerCase()) {
             case "chrome":
-                return new RemoteWebDriver(new URL(gridUrl), getChromeOptions());
+                return new RemoteWebDriver(new URL(gridUrl), getChromeOptions(true));
             case "firefox":
-                return new RemoteWebDriver(new URL(gridUrl), getFirefoxOptions());
+                return new RemoteWebDriver(new URL(gridUrl), getFirefoxOptions(true));
             case "microsoftedge", "edge":
-                return new RemoteWebDriver(new URL(gridUrl), getEdgeOptions());
+                return new RemoteWebDriver(new URL(gridUrl), getEdgeOptions(true));
             default:
                 throw new IllegalArgumentException(
                         "Неподдерживаемый браузер для Grid: " + browserName);
@@ -70,11 +70,11 @@ public class BaseTest {
     private WebDriver createLocalDriver(String browserName) {
         switch (browserName.toLowerCase()) {
             case "chrome":
-                return new ChromeDriver(getChromeOptions());
+                return new ChromeDriver(getChromeOptions(false));
             case "firefox":
-                return new FirefoxDriver(getFirefoxOptions());
+                return new FirefoxDriver(getFirefoxOptions(false));
             case "microsoftedge", "edge":
-                return new EdgeDriver(getEdgeOptions());
+                return new EdgeDriver(getEdgeOptions(false));
             default:
                 throw new IllegalArgumentException(
                         "Неподдерживаемый локальный браузер: " + browserName);
@@ -82,34 +82,43 @@ public class BaseTest {
     }
 
     /** Настройки для Chrome */
-    private ChromeOptions getChromeOptions() {
+    private ChromeOptions getChromeOptions(boolean headless) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--window-size=1920,1080");
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         options.addArguments(
                 "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--disable-extensions");
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+
+        if (headless) {
+            options.addArguments("--headless=new");
+            options.addArguments("--window-size=1920,1080");
+        }
 
         return options;
     }
 
     /** Настройки для Firefox */
-    private FirefoxOptions getFirefoxOptions() {
+    private FirefoxOptions getFirefoxOptions(boolean headless) {
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("-headless");
-        options.addArguments("--width=1920");
-        options.addArguments("--height=1080");
+
+        if (headless) {
+            options.addArguments("-headless");
+            options.addArguments("--width=1920");
+            options.addArguments("--height=1080");
+        }
 
         return options;
     }
 
     /** Настройки для Edge */
-    private EdgeOptions getEdgeOptions() {
+    private EdgeOptions getEdgeOptions(boolean headless) {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
+
+        if (headless) {
+            options.addArguments("--headless=new");
+            options.addArguments("--window-size=1920,1080");
+        }
 
         return options;
     }

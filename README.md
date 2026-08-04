@@ -26,7 +26,7 @@ project_root/
 
 ---
 
-## Установка и запуск
+## Установка и настройка
 
 ### Клонирование репозитория
 
@@ -47,6 +47,18 @@ project_root/
 ```bash
 mvn clean compile
 ```
+
+### Настройка перед запуском
+
+1. **Конфигурация**:
+    - Скопируйте содержимое файла `src/test/resources/config.properties.example` в
+      `src/test/resources/config.properties`
+    - Заполните шаблоны вашими реальными данными
+
+2. **Запуск Selenium Grid**:
+    - Перейдите в папку `grid/` и запустите `selenium_grid.bat`.
+    - Убедитесь, что Grid доступен по адресу `http://localhost:4444/ui/`
+    - В корне проекта запустите `test_with_grid.bat`.
 
 ---
 

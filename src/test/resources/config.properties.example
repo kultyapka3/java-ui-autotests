@@ -1,3 +1,5 @@
+# Шаблон конфигурации
+# Скопируйте содержимое файла в config.properties и заполните реальными данными
 # SQL-Ex
 sqlex.login=your_login
 sqlex.password=your_password
