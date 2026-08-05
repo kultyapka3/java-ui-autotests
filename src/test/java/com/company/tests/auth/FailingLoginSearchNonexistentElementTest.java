@@ -21,20 +21,21 @@ public class FailingLoginSearchNonexistentElementTest extends BaseTest {
     public void testFailingLoginSearchNonexistentElement() {
         LoginPage loginPage = createLoginPage();
 
-        loginPage
-                .enterUsernameLogin(LoginData.VALID_USERNAME_LOGIN)
-                .enterPassword(LoginData.VALID_PASSWORD)
-                .enterUsername(LoginData.VALID_USERNAME)
-                .clickLogin();
+        Allure.step(
+                "Ввод валидных данных",
+                () -> {
+                    loginPage
+                            .enterUsernameLogin(LoginData.VALID_USERNAME_LOGIN)
+                            .enterPassword(LoginData.VALID_PASSWORD)
+                            .enterUsername(LoginData.VALID_USERNAME)
+                            .clickLogin();
+                });
 
         Allure.step(
                 "Проверка ошибки авторизации",
                 () -> {
                     Assert.assertTrue(
-                            loginPage
-                                    .getErrorMessage()
-                                    .contains("Username or password is incorrect"),
-                            "Сообщение об ошибке не найдено");
+                            loginPage.isErrorMessagePresent(), "Сообщение об ошибке не найдено");
                 });
 
         loginPage.clickLogout();

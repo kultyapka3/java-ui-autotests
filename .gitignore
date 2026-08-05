@@ -48,3 +48,5 @@ surefire-reports/
 jacoco/
 coverage/
 test-output/
+cookies/
+!grid/selenium-server-4.40.0.jar

@@ -64,6 +64,11 @@ public class LoginPage extends BasePage {
         return findVisibleElement(ERROR_MESSAGE).getText().strip();
     }
 
+    @Step("Проверка наличия сообщения об ошибке на странице")
+    public boolean isErrorMessagePresent() {
+        return !driver.findElements(ERROR_MESSAGE).isEmpty();
+    }
+
     @Step("Нажатие на кнопку 'Logout'")
     public LoginPage clickLogout() {
         clickElement(LOGOUT_BUTTON);
