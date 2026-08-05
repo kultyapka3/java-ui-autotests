@@ -1,8 +1,14 @@
 package com.company.pages;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import com.company.config.Config;
+import com.company.utils.CookieUtils;
 
 public class SqlExPage extends BasePage {
 
@@ -25,6 +31,23 @@ public class SqlExPage extends BasePage {
     @Step("Ввод пароля = {password}")
     public SqlExPage enterPassword(String password) {
         sendKeysToElement(PASSWORD_FIELD, password);
+
+        return this;
+    }
+
+    @Step("Авторизация с помощью логина/пароля или через Cookies")
+    public SqlExPage smartLogin() {
+        String cookiesFile = Config.getCookiesFilePath();
+
+        if (Files.exists(Paths.get(cookiesFile))) {
+            CookieUtils.loadCookies(driver, cookiesFile);
+        } else {
+            enterLogin(Config.getSQLExLogin())
+                    .enterPassword(Config.getSQLExPassword())
+                    .clickLogin();
+
+            CookieUtils.saveCookies(driver, cookiesFile);
+        }
 
         return this;
     }

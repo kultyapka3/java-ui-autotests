@@ -59,11 +59,21 @@ public class Config {
 
     /** Логин SQL-Ex */
     public static String getSQLExLogin() {
+        String envLogin = System.getenv("SQLEX_LOGIN");
+        if (envLogin != null && !envLogin.isEmpty()) {
+            return envLogin;
+        }
+
         return props.getProperty("sqlex.login");
     }
 
     /** Пароль SQL-Ex */
     public static String getSQLExPassword() {
+        String envPassword = System.getenv("SQLEX_PASSWORD");
+        if (envPassword != null && !envPassword.isEmpty()) {
+            return envPassword;
+        }
+
         return props.getProperty("sqlex.password");
     }
 }
