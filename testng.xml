@@ -53,4 +53,12 @@
         </packages>
     </test>
 
+    <test name="dragndrop">
+        <parameter name="browser" value="firefox"/>
+
+        <packages>
+            <package name="com.company.tests.dragndrop"/>
+        </packages>
+    </test>
+
 </suite>

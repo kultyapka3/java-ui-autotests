@@ -76,4 +76,9 @@ public class Config {
 
         return props.getProperty("sqlex.password");
     }
+
+    /** Ссылка на страницу Drag and Drop */
+    public static String getDragNDropUrl() {
+        return "http://way2automation.com/way2auto_jquery/droppable.php";
+    }
 }

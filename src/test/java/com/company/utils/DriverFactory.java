@@ -99,7 +99,7 @@ public class DriverFactory {
         return options;
     }
 
-    /** Настройки для Edge в режиме Internet Explorer */
+    /** Настройки для Internet Explorer */
     private static InternetExplorerOptions getIEOptions() {
         InternetExplorerOptions options = new InternetExplorerOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);

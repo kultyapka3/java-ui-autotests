@@ -13,6 +13,7 @@ import com.company.pages.BankingAppPage;
 import com.company.pages.HomePage;
 import com.company.pages.LoginPage;
 import com.company.pages.SqlExPage;
+import com.company.pages.DragNDropPage;
 import com.company.utils.DriverFactory;
 
 /** Базовый класс для всех тестов */
@@ -71,6 +72,14 @@ public class BaseTest {
     protected SqlExPage createSqlExPage() {
         SqlExPage page = new SqlExPage(this.driver);
         page.open(Config.getSQLExUrl());
+
+        return page;
+    }
+
+    /** Создание страницы Drag and Drop */
+    protected DragNDropPage createDragNDropPage() {
+        DragNDropPage page = new DragNDropPage(this.driver);
+        page.open(Config.getDragNDropUrl());
 
         return page;
     }
