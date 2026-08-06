@@ -1,19 +1,9 @@
 package com.company.base;
 
-import java.net.URL;
-
 import io.qameta.allure.Attachment;
 import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import org.testng.ITestResult;
@@ -23,6 +13,7 @@ import com.company.pages.BankingAppPage;
 import com.company.pages.HomePage;
 import com.company.pages.LoginPage;
 import com.company.pages.SqlExPage;
+import com.company.utils.DriverFactory;
 
 /** Базовый класс для всех тестов */
 @Listeners(AllureTestNg.class)
@@ -34,93 +25,21 @@ public class BaseTest {
     @Parameters({"browser"})
     public void setUp(@Optional("chrome") String browserName) {
         String gridUrl = System.getProperty("grid.url");
+        boolean isGrid = gridUrl != null && !gridUrl.isEmpty();
 
         try {
-            if (gridUrl != null && !gridUrl.isEmpty()) {
+            if (isGrid) {
                 System.out.println(
                         "Запуск на Selenium Grid: " + gridUrl + "\n  Браузер: " + browserName);
-                driver = createRemoteDriver(browserName, gridUrl);
             } else {
                 System.out.println("Локальный запуск\n  Браузер: " + browserName);
-                driver = createLocalDriver(browserName);
             }
 
+            driver = DriverFactory.createDriver(browserName, isGrid, gridUrl);
             driver.manage().window().maximize();
         } catch (Exception e) {
             throw new RuntimeException("Ошибка при инициализации WebDriver: " + e.getMessage(), e);
         }
-    }
-
-    /** Создание драйвера для Selenium Grid */
-    private WebDriver createRemoteDriver(String browserName, String gridUrl) throws Exception {
-        switch (browserName.toLowerCase()) {
-            case "chrome":
-                return new RemoteWebDriver(new URL(gridUrl), getChromeOptions(true));
-            case "firefox":
-                return new RemoteWebDriver(new URL(gridUrl), getFirefoxOptions(true));
-            case "microsoftedge", "edge":
-                return new RemoteWebDriver(new URL(gridUrl), getEdgeOptions(true));
-            default:
-                throw new IllegalArgumentException(
-                        "Неподдерживаемый браузер для Grid: " + browserName);
-        }
-    }
-
-    /** Создание локального драйвера */
-    private WebDriver createLocalDriver(String browserName) {
-        switch (browserName.toLowerCase()) {
-            case "chrome":
-                return new ChromeDriver(getChromeOptions(false));
-            case "firefox":
-                return new FirefoxDriver(getFirefoxOptions(false));
-            case "microsoftedge", "edge":
-                return new EdgeDriver(getEdgeOptions(false));
-            default:
-                throw new IllegalArgumentException(
-                        "Неподдерживаемый локальный браузер: " + browserName);
-        }
-    }
-
-    /** Настройки для Chrome */
-    private ChromeOptions getChromeOptions(boolean headless) {
-        ChromeOptions options = new ChromeOptions();
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        options.addArguments(
-                "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--disable-extensions");
-
-        if (headless) {
-            options.addArguments("--headless=new");
-            options.addArguments("--window-size=1920,1080");
-        }
-
-        return options;
-    }
-
-    /** Настройки для Firefox */
-    private FirefoxOptions getFirefoxOptions(boolean headless) {
-        FirefoxOptions options = new FirefoxOptions();
-
-        if (headless) {
-            options.addArguments("-headless");
-            options.addArguments("--width=1920");
-            options.addArguments("--height=1080");
-        }
-
-        return options;
-    }
-
-    /** Настройки для Edge */
-    private EdgeOptions getEdgeOptions(boolean headless) {
-        EdgeOptions options = new EdgeOptions();
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
-
-        if (headless) {
-            options.addArguments("--headless=new");
-            options.addArguments("--window-size=1920,1080");
-        }
-
-        return options;
     }
 
     // Фабрики для Page Object

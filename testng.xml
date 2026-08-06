@@ -14,7 +14,7 @@
     </test>
 
     <test name="bank_manager">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="InternetExplorer"/>
 
         <packages>
             <package name="com.company.tests.banking.bank_manager"/>
