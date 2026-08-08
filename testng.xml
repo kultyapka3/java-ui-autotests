@@ -14,7 +14,7 @@
     </test>
 
     <test name="bank_manager">
-        <parameter name="browser" value="firefox"/>
+        <parameter name="browser" value="InternetExplorer"/>
 
         <packages>
             <package name="com.company.tests.banking.bank_manager"/>
@@ -50,6 +50,14 @@
 
         <packages>
             <package name="com.company.tests.jsexecutor"/>
+        </packages>
+    </test>
+
+    <test name="dragndrop">
+        <parameter name="browser" value="firefox"/>
+
+        <packages>
+            <package name="com.company.tests.dragndrop"/>
         </packages>
     </test>
 
