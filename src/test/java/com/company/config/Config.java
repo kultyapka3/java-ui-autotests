@@ -79,6 +79,11 @@ public class Config {
 
     /** Ссылка на страницу Drag and Drop */
     public static String getDragNDropUrl() {
-        return "http://way2automation.com/way2auto_jquery/droppable.php";
+        return getHomePageUrl() + "way2auto_jquery/droppable.php";
+    }
+
+    /** Ссылка на страницу Frames and Windows */
+    public static String getFramesNWindowsUrl() {
+        return getHomePageUrl() + "way2auto_jquery/frames-and-windows.php";
     }
 }
