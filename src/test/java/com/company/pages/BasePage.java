@@ -158,4 +158,10 @@ public class BasePage {
     public int getWindowCount() {
         return driver.getWindowHandles().size();
     }
+
+    @Step("Ввод в алерт текста = {text}")
+    public void enterTextToAlert(String text) {
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.sendKeys(text);
+    }
 }

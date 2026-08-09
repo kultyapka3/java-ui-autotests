@@ -15,6 +15,7 @@ import com.company.pages.LoginPage;
 import com.company.pages.SqlExPage;
 import com.company.pages.DragNDropPage;
 import com.company.pages.FramesNWindowsPage;
+import com.company.pages.AlertPage;
 import com.company.utils.DriverFactory;
 
 /** Базовый класс для всех тестов */
@@ -89,6 +90,14 @@ public class BaseTest {
     protected FramesNWindowsPage createFramesNWindowsPage() {
         FramesNWindowsPage page = new FramesNWindowsPage(this.driver);
         page.open(Config.getFramesNWindowsUrl());
+
+        return page;
+    }
+
+    /** Создание страницы Alert */
+    protected AlertPage createAlertPage() {
+        AlertPage page = new AlertPage(this.driver);
+        page.open(Config.getAlertUrl());
 
         return page;
     }
