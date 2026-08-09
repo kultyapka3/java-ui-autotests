@@ -14,6 +14,7 @@ import com.company.pages.HomePage;
 import com.company.pages.LoginPage;
 import com.company.pages.SqlExPage;
 import com.company.pages.DragNDropPage;
+import com.company.pages.FramesNWindowsPage;
 import com.company.utils.DriverFactory;
 
 /** Базовый класс для всех тестов */
@@ -80,6 +81,14 @@ public class BaseTest {
     protected DragNDropPage createDragNDropPage() {
         DragNDropPage page = new DragNDropPage(this.driver);
         page.open(Config.getDragNDropUrl());
+
+        return page;
+    }
+
+    /** Создание страницы Frames and Windows */
+    protected FramesNWindowsPage createFramesNWindowsPage() {
+        FramesNWindowsPage page = new FramesNWindowsPage(this.driver);
+        page.open(Config.getFramesNWindowsUrl());
 
         return page;
     }

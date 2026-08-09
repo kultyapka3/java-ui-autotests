@@ -2,6 +2,7 @@ package com.company.pages;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -116,5 +117,51 @@ public class BasePage {
         return (boolean)
                 js.executeScript(
                         "return (document.documentElement.scrollTop + document.documentElement.clientHeight) >= (document.documentElement.scrollHeight - 5);");
+    }
+
+    @Step("Переключение на новую вкладку")
+    public <T extends BasePage> T switchToNewTab(String originalHandle) {
+        Set<String> handles = driver.getWindowHandles();
+
+        for (String handle : handles) {
+            if (!handle.equals(originalHandle)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+
+        return (T) this;
+    }
+
+    @Step("Возврат к исходной вкладке")
+    public <T extends BasePage> T switchToOriginalTab(String originalHandle) {
+        driver.switchTo().window(originalHandle);
+
+        return (T) this;
+    }
+
+    @Step("Закрытие всех вкладок, кроме исходной")
+    public <T extends BasePage> T closeAllTabsExceptOriginal(String originalHandle) {
+        Set<String> allHandles = driver.getWindowHandles();
+
+        for (String handle : allHandles) {
+            if (!handle.equals(originalHandle)) {
+                driver.switchTo().window(handle);
+                driver.close();
+            }
+        }
+        driver.switchTo().window(originalHandle);
+
+        return (T) this;
+    }
+
+    @Step("Получение дескриптора текущей вкладки")
+    public String getCurrentWindowHandle() {
+        return driver.getWindowHandle();
+    }
+
+    @Step("Получение количества открытых вкладок")
+    public int getWindowCount() {
+        return driver.getWindowHandles().size();
     }
 }
