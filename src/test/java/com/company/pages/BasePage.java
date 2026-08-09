@@ -120,7 +120,7 @@ public class BasePage {
     }
 
     @Step("Переключение на новую вкладку")
-    public <T extends BasePage> T switchToNewTab(String originalHandle) {
+    public void switchToNewTab(String originalHandle) {
         Set<String> handles = driver.getWindowHandles();
 
         for (String handle : handles) {
@@ -129,19 +129,15 @@ public class BasePage {
                 break;
             }
         }
-
-        return (T) this;
     }
 
     @Step("Возврат к исходной вкладке")
-    public <T extends BasePage> T switchToOriginalTab(String originalHandle) {
+    public void switchToOriginalTab(String originalHandle) {
         driver.switchTo().window(originalHandle);
-
-        return (T) this;
     }
 
     @Step("Закрытие всех вкладок, кроме исходной")
-    public <T extends BasePage> T closeAllTabsExceptOriginal(String originalHandle) {
+    public void closeAllTabsExceptOriginal(String originalHandle) {
         Set<String> allHandles = driver.getWindowHandles();
 
         for (String handle : allHandles) {
@@ -151,8 +147,6 @@ public class BasePage {
             }
         }
         driver.switchTo().window(originalHandle);
-
-        return (T) this;
     }
 
     @Step("Получение дескриптора текущей вкладки")

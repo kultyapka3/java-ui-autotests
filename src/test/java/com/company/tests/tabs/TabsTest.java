@@ -26,7 +26,7 @@ public class TabsTest extends BaseTest {
         Allure.step(
                 "Открытие второй вкладки и переключение фокуса на неё",
                 () -> {
-                    framesNWindowsPage.openNewTab().switchToNewTab(originalTab);
+                    framesNWindowsPage.openNewTab().switchToNewFramesTab(originalTab);
                 });
 
         Allure.step(
@@ -38,14 +38,16 @@ public class TabsTest extends BaseTest {
         Allure.step(
                 "Проверка количества открытых вкладок",
                 () -> {
-                    int tabCount = framesNWindowsPage.getWindowCount();
+                    int tabCount = framesNWindowsPage.getFramesWindowCount();
                     Assert.assertEquals(
                             tabCount,
                             3,
                             String.format("Количество вкладок равно %d, а ожидалось 3", tabCount));
                 });
 
-        framesNWindowsPage.closeAllTabsExceptOriginal(originalTab).switchToOriginalTab(originalTab);
-        framesNWindowsPage.switchFromIFrame();
+        framesNWindowsPage
+                .closeAllFramesTabsExceptOriginal(originalTab)
+                .switchToOriginalFramesTab(originalTab)
+                .switchFromIFrame();
     }
 }
