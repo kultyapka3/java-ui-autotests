@@ -9,13 +9,7 @@ import org.testng.annotations.*;
 import org.testng.ITestResult;
 
 import com.company.config.Config;
-import com.company.pages.BankingAppPage;
-import com.company.pages.HomePage;
-import com.company.pages.LoginPage;
-import com.company.pages.SqlExPage;
-import com.company.pages.DragNDropPage;
-import com.company.pages.FramesNWindowsPage;
-import com.company.pages.AlertPage;
+import com.company.pages.*;
 import com.company.utils.DriverFactory;
 
 /** Базовый класс для всех тестов */
@@ -98,6 +92,14 @@ public class BaseTest {
     protected AlertPage createAlertPage() {
         AlertPage page = new AlertPage(this.driver);
         page.open(Config.getAlertUrl());
+
+        return page;
+    }
+
+    /** Создание страницы Basic Auth */
+    protected BasicAuthPage createBasicAuthPage() {
+        BasicAuthPage page = new BasicAuthPage(this.driver);
+        page.open(Config.getBasicAuthUrl());
 
         return page;
     }
