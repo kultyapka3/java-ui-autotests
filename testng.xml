@@ -61,4 +61,28 @@
         </packages>
     </test>
 
+    <test name="tabs">
+        <parameter name="browser" value="InternetExplorer"/>
+
+        <packages>
+            <package name="com.company.tests.tabs"/>
+        </packages>
+    </test>
+
+    <test name="alert">
+        <parameter name="browser" value="chrome"/>
+
+        <packages>
+            <package name="com.company.tests.alert"/>
+        </packages>
+    </test>
+
+    <test name="basicauth">
+        <parameter name="browser" value="MicrosoftEdge"/>
+
+        <packages>
+            <package name="com.company.tests.auth.basicauth"/>
+        </packages>
+    </test>
+
 </suite>

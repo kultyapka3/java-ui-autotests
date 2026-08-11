@@ -86,4 +86,14 @@ public class Config {
     public static String getFramesNWindowsUrl() {
         return getHomePageUrl() + "way2auto_jquery/frames-and-windows.php";
     }
+
+    /** Ссылка на страницу Alert */
+    public static String getAlertUrl() {
+        return getHomePageUrl() + "way2auto_jquery/alert.php";
+    }
+
+    /** Ссылка на страницу Basic Auth */
+    public static String getBasicAuthUrl() {
+        return "https://www.httpwatch.com/httpgallery/authentication/";
+    }
 }
